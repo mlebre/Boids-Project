@@ -1,0 +1,7 @@
+Pour sortie graphique:
+
+bwindow.o dans ligne test.out
+bwindow.o -lX11 -L/usr/X11R6/lib dans ligne gpp de test.out
+
+bwindow.o bwindow.cpp bwindow.h
+	gpp -o bwindow.o -c bwindow.cpp
