@@ -33,7 +33,9 @@ class population
 //-------------------------------------------------------------------
 //                             Getters
 //-------------------------------------------------------------------
-
+    inline unsigned int Get_size(void);
+    inline unsigned int Get_nb_prey(void);
+    inline unsigned int Get_nb_predator(void);
 //-------------------------------------------------------------------
 //                             Setters
 //-------------------------------------------------------------------
@@ -59,6 +61,9 @@ class population
 //-------------------------------------------------------------------
 //                        Private attributes
 //-------------------------------------------------------------------
+    unsigned int size;
+    unsigned int nb_prey;
+    unsigned int nb_predator;
 
 //-------------------------------------------------------------------
 //                         Private methods
@@ -68,7 +73,20 @@ class population
 //===================================================================
 //                      Getters' definitions
 //===================================================================
+inline unsigned int population::Get_size(void)
+{
+  return size;
+}
 
+inline unsigned int population::Get_nb_prey(void)
+{
+  return nb_prey;
+}
+
+inline unsigned int population::Get_nb_predator(void)
+{
+  return nb_predator;
+}
 //===================================================================
 //                      Setters' definitions
 //===================================================================
