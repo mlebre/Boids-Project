@@ -18,11 +18,6 @@ unsigned int prey::compt=0;
 //-------------------------------------------------------------------
 prey::prey(void)
 {
-  srandom(time(NULL));
-  speed=0;
-  xposition=W*(random()/(RAND_MAX + 1.0));
-  yposition=H*(random()/(RAND_MAX + 1.0));
-  r=0.5;
   compt=compt+1;
 }
 

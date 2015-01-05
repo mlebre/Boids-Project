@@ -18,7 +18,7 @@
 //===================================================================
 //                          Class declaration
 //===================================================================
-class prey : public agent
+class prey : public agent 
 {
   public:
 //-------------------------------------------------------------------
@@ -36,10 +36,6 @@ class prey : public agent
 //-------------------------------------------------------------------
 //                             Getters
 //-------------------------------------------------------------------
-    inline double Get_speed(void);
-    inline double Get_xposition(void);
-    inline double Get_yposition(void);
-    inline double Get_r(void);
     static unsigned int Get_compt(void);
 
 //-------------------------------------------------------------------
@@ -49,16 +45,12 @@ class prey : public agent
 //-------------------------------------------------------------------
 //                          Public methods
 //-------------------------------------------------------------------
-    double 
 
   protected:
 //-------------------------------------------------------------------
 //                        Protected attributes
 //-------------------------------------------------------------------
-    double speed;
-    double xposition; //x-axis position
-    double yposition; //y-axis position
-    double r; //perception radius
+    
 
     static unsigned int compt; //nb of prey
 //-------------------------------------------------------------------
@@ -74,25 +66,7 @@ class prey : public agent
 //===================================================================
 //                      Getters' definitions
 //===================================================================
-inline double prey::Get_speed(void)
-{
-  return speed;
-}
 
-inline double prey::Get_xposition(void)
-{
-  return xposition;
-}
-
-inline double prey::Get_yposition(void)
-{
-  return yposition;
-}
-
-inline double prey::Get_r(void)
-{
-  return r;
-}
 
 //===================================================================
 //                      Setters' definitions
