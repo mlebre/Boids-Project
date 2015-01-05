@@ -12,6 +12,7 @@
 #include <cstdlib>
 #include <cstring>
 
+#include "agent.h"
 //===================================================================
 //                          Class declaration
 //===================================================================
@@ -21,8 +22,8 @@ class population
 //-------------------------------------------------------------------
 //                          Public attributes
 //-------------------------------------------------------------------
-    static double W;
-    static double H;
+    double W;
+    double H;
 //We want to allow modifications of size's field by users
 
 //-------------------------------------------------------------------
@@ -44,9 +45,11 @@ class population
 //-------------------------------------------------------------------
     inline void Set_W(double width);
     inline void Set_H(double height);
+    inline void Set_size(double width);
 //-------------------------------------------------------------------
 //                          Public methods
 //-------------------------------------------------------------------
+    void create(void);
 
   protected:
 //-------------------------------------------------------------------
@@ -68,6 +71,7 @@ class population
     unsigned int size;
     unsigned int nb_prey;
     unsigned int nb_predator;
+    agent* tab;
 
 //-------------------------------------------------------------------
 //                         Private methods
@@ -102,6 +106,11 @@ inline void population::Set_W(double width)
 inline void population::Set_H(double height)
 {
   H=height;
+}
+
+inline void population::Set_size(double nb)
+{
+  size=nb;
 }
 
 //===================================================================
