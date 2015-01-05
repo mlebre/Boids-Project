@@ -39,7 +39,8 @@ class prey : public agent
     inline double Get_xposition(void);
     inline double Get_yposition(void);
     inline double Get_r(void);
-    
+    static unsigned int Get_compt(void);
+
 //-------------------------------------------------------------------
 //                             Setters
 //-------------------------------------------------------------------
@@ -47,6 +48,7 @@ class prey : public agent
 //-------------------------------------------------------------------
 //                          Public methods
 //-------------------------------------------------------------------
+
 
   protected:
 //-------------------------------------------------------------------
@@ -56,6 +58,8 @@ class prey : public agent
     double xposition; //x-axis position
     double yposition; //y-axis position
     double r; //perception radius
+
+    static unsigned int compt; //nb of prey
 //-------------------------------------------------------------------
 //                        Forbiden constructor
 //-------------------------------------------------------------------
