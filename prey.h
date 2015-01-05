@@ -12,17 +12,17 @@
 #include <cstdlib>
 #include <cstring>
 
+#include "agent.h"
+
 //===================================================================
 //                          Class declaration
 //===================================================================
-class prey
+class prey : public agent
 {
   public:
 //-------------------------------------------------------------------
 //                          Public attributes
 //-------------------------------------------------------------------
-    static double W; // weight of the field
-    static double H; // height of the field
 
 //-------------------------------------------------------------------
 //                            Constructor
