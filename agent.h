@@ -11,22 +11,23 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
-
-#include "population.h"
+#include <time.h>
 //===================================================================
 //                          Class declaration
 //===================================================================
-class agent : public population
+class agent 
 {
   public:
 //-------------------------------------------------------------------
 //                          Public attributes
 //-------------------------------------------------------------------
 
+
 //-------------------------------------------------------------------
 //                            Constructor
 //-------------------------------------------------------------------
     agent(void);
+    agent(double W, double H);
 //-------------------------------------------------------------------
 //                            Destructor
 //-------------------------------------------------------------------
@@ -34,6 +35,10 @@ class agent : public population
 //-------------------------------------------------------------------
 //                             Getters
 //-------------------------------------------------------------------
+    inline double Get_speed(void);
+    inline double Get_xposition(void);
+    inline double Get_yposition(void);
+    inline double Get_r(void);
 
 //-------------------------------------------------------------------
 //                             Setters
@@ -42,11 +47,21 @@ class agent : public population
 //-------------------------------------------------------------------
 //                          Public methods
 //-------------------------------------------------------------------
+   
+     
+
+
 
   protected:
 //-------------------------------------------------------------------
 //                        Protected attributes
 //-------------------------------------------------------------------
+    static unsigned int nb_agents;
+
+    double speed;
+    double xposition; //x-axis position
+    double yposition; //y-axis position
+    double r; //perception radius
 
 //-------------------------------------------------------------------
 //                        Forbiden constructor
@@ -55,6 +70,8 @@ class agent : public population
 //-------------------------------------------------------------------
 //                        Protected methods
 //-------------------------------------------------------------------
+  
+
 
   private:
 //-------------------------------------------------------------------
@@ -69,7 +86,25 @@ class agent : public population
 //===================================================================
 //                      Getters' definitions
 //===================================================================
+inline double agent::Get_speed(void)
+{
+  return speed;
+}
 
+inline double agent::Get_xposition(void)
+{
+  return xposition;
+}
+
+inline double agent::Get_yposition(void)
+{
+  return yposition;
+}
+
+inline double agent::Get_r(void)
+{
+  return r;
+}
 //===================================================================
 //                      Setters' definitions
 //===================================================================

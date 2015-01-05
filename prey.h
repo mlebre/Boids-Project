@@ -11,6 +11,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
+#include <time.h>
 
 #include "agent.h"
 
@@ -48,7 +49,7 @@ class prey : public agent
 //-------------------------------------------------------------------
 //                          Public methods
 //-------------------------------------------------------------------
-
+    double 
 
   protected:
 //-------------------------------------------------------------------
