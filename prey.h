@@ -38,6 +38,7 @@ class prey
     inline double Get_speed(void);
     inline double Get_xposition(void);
     inline double Get_yposition(void);
+    inline double Get_r(void);
     
 //-------------------------------------------------------------------
 //                             Setters
@@ -68,7 +69,25 @@ class prey
 //===================================================================
 //                      Getters' definitions
 //===================================================================
+inline double prey::Get_speed(void)
+{
+  return speed;
+}
 
+inline double prey::Get_xposition(void)
+{
+  return xposition;
+}
+
+inline double prey::Get_yposition(void)
+{
+  return yposition;
+}
+
+inline double prey::Get_r(void)
+{
+  return r;
+}
 
 //===================================================================
 //                      Setters' definitions
