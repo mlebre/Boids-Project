@@ -21,6 +21,9 @@ class population
 //-------------------------------------------------------------------
 //                          Public attributes
 //-------------------------------------------------------------------
+    static double W;
+    static double H;
+//We want to allow modifications of size's field by users
 
 //-------------------------------------------------------------------
 //                            Constructor
@@ -39,7 +42,8 @@ class population
 //-------------------------------------------------------------------
 //                             Setters
 //-------------------------------------------------------------------
-
+    inline void Set_W(double width);
+    inline void Set_H(double height);
 //-------------------------------------------------------------------
 //                          Public methods
 //-------------------------------------------------------------------
@@ -90,6 +94,15 @@ inline unsigned int population::Get_nb_predator(void)
 //===================================================================
 //                      Setters' definitions
 //===================================================================
+inline void population::Set_W(double width)
+{
+  W=width;
+}
+
+inline void population::Set_H(double height)
+{
+  H=height;
+}
 
 //===================================================================
 //                      Operators' definitions
