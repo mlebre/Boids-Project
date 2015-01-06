@@ -71,10 +71,38 @@ void population::create(void)
 void population::print(void)
 {
   unsigned int i;
-  for(i=0; i<size; i++)
+  bwindow win(W,H); // carré blanc de taille W*H
+  printf("%d\n",win.init());
+  win.map();
+  for(;;)
+  {
+    int ev = win.parse_event();
+    switch(ev)
+    {
+        case BKPRESS :
+      printf("keypressed\n"); 
+      printf("key : %s\n",win.get_lastkey());
+        break;
+        case BBPRESS:
+      printf("buttonpressed\n"); break;
+        case BEXPOSE:
+      printf("expose\n"); break;
+        case BCONFIGURE:
+      printf("configure\n"); break;
+    }
+    win.draw_text(10,10,0x0,"Population au temps 0",strlen("Population au temps 0"));
+    for(i=0; i<size; i++)
+    {
+      win.draw_square(-2+(tab[i].Get_xposition()),-2+(tab[i].Get_xposition()), 2+(tab[i].Get_xposition()), 2+(tab[i].Get_xposition()),0xFF0000);
+    }
+    
+    
+    //win.draw_fsquare(400,400,440,440,0xFF00);
+  }
+  /*for(i=0; i<size; i++)
   {
     printf("position: %f; %f\n", tab[i].Get_xposition(), tab[i].Get_yposition());
-  }
+  }*/
 }
 
 
@@ -94,6 +122,33 @@ void population::print(void)
 
 
 
+//Affichage graphique
+/*bwindow win(640,480);
+    printf("%d\n",win.init());
+    win.map();
+    for(;;)
+    {
+  int ev = win.parse_event();
+  switch(ev)
+  {
+      case BKPRESS :
+    printf("keypressed\n"); 
+    printf("key : %s\n",win.get_lastkey());
+    break;
+      case BBPRESS:
+    printf("buttonpressed\n"); break;
+      case BEXPOSE:
+    printf("expose\n"); break;
+      case BCONFIGURE:
+    printf("configure\n"); break;
+  }
+  win.draw_point(100,100,0xFF00);
+  win.draw_line(100,100,200,200,0xFF0000);
+  win.draw_text(10,10,0x0,"Hello World",strlen("Hello World"));
+  //affiche un carré (abs coin sup gauche, ord coin sup gauche,abs coin inf droit, ord coin inf droit)
+  win.draw_square(200,200,220,220,0xFF00);
+  win.draw_fsquare(400,400,440,440,0xFF00);
+    }*/
 
 
 

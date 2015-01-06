@@ -13,6 +13,7 @@
 #include <cstring>
 
 #include "agent.h"
+#include "bwindow.h"
 //===================================================================
 //                          Class declaration
 //===================================================================
@@ -58,7 +59,7 @@ class population
 
     //Print data
     void print(void);
-    
+
 
 
 
