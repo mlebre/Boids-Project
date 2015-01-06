@@ -56,6 +56,10 @@ class population
     void define(void);
     void create(void);
 
+    //Print data
+    void print(void);
+    
+
 
 
   protected:

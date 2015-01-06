@@ -29,7 +29,7 @@ population::population(void)
 //-------------------------------------------------------------------
 population::~population(void)
 {
-
+  delete [] tab;
 }
 
 //-------------------------------------------------------------------
@@ -37,7 +37,7 @@ population::~population(void)
 //-------------------------------------------------------------------
 
 
-//Creation d'une population 
+//Creation of a population 
 
 void population::define(void)
 {
@@ -55,12 +55,27 @@ void population::create(void)
 {
 	unsigned int i;
 	tab=new agent [size];
-	for(i=0; i<size; i++)
+  tab[0]=agent(W,H);
+	for(i=1; i<size; i++)
 	{
       tab[i]=agent(W,H);
+      while(tab[i].Get_xposition()==tab[i-1].Get_xposition()) // agent not begin at the same place, this method up calculation size
+      {
+        tab[i]=agent(W,H);
+      }
 	}
 }
 
+
+//Print data
+void population::print(void)
+{
+  unsigned int i;
+  for(i=0; i<size; i++)
+  {
+    printf("position: %f; %f\n", tab[i].Get_xposition(), tab[i].Get_yposition());
+  }
+}
 
 
 
