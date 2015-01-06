@@ -36,7 +36,9 @@ int main()
 //-------------------------------------------------------------------  
 //Print data
   Boids.create();
+  Boids.alignment(); 
   Boids.print();
+  
 
   return 0;
 } 
