@@ -21,13 +21,19 @@
 int main()
 {
   printf("Hello world!!\n");
-
+//-------------------------------------------------------------------
   //Création d'une population
   population Boids=population();
+  //Real methods
+  /*Boids.define();
+  Boids.create();*/
+
+  //Only to tests
   Boids.Set_W(200);
   Boids.Set_H(200);
   Boids.Set_size(10);
-  
+  printf("Size= %d, field=%.2f*%.2f\n", Boids.Get_size(), Boids.Get_W(), Boids.Get_H());
+//-------------------------------------------------------------------  
 
 
   return 0;
