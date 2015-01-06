@@ -11,35 +11,39 @@
 //-------------------------------------------------------------------
 //                    Definiton of static attributes
 //-------------------------------------------------------------------
-unsigned int agent::nb_agents=0;
-
 
 //-------------------------------------------------------------------
 //                           Constructors
 //-------------------------------------------------------------------
 agent::agent(void)
 {
-  speed=0;
+  speed=NULL;
   xposition=0;
   yposition=0;
   r=0.5;
-  nb_agents++;
+  nb_agents=0;
 }
 
-agent::agent(double W, double H)
+agent::agent(double W, double H, unsigned int size)
 {
   srandom(time(NULL));
-  speed=0;
+  unsigned int i;
+  speed=new double [4*size];
+  for(i=0; i<4*size; i++)
+  {
+    speed[i]=0;
+  }
   xposition=W*(random()/(RAND_MAX + 1.0));
   yposition=H*(random()/(RAND_MAX + 1.0));
   r=0.5;
-  nb_agents++;
+  nb_agents=size;
 }
 //-------------------------------------------------------------------
 //                           Destructors
 //-------------------------------------------------------------------
 agent::~agent(void)
 {
+  delete [] speed;
   nb_agents--;
 }
 

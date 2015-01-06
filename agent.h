@@ -27,7 +27,7 @@ class agent
 //                            Constructor
 //-------------------------------------------------------------------
     agent(void);
-    agent(double W, double H);
+    agent(double W, double H, unsigned int size);
 //-------------------------------------------------------------------
 //                            Destructor
 //-------------------------------------------------------------------
@@ -35,15 +35,15 @@ class agent
 //-------------------------------------------------------------------
 //                             Getters
 //-------------------------------------------------------------------
-    inline double Get_speed(void);
+    inline double* Get_speed(void);
     inline double Get_xposition(void);
     inline double Get_yposition(void);
     inline double Get_r(void);
-
+    inline double Get_speed(unsigned int x);
 //-------------------------------------------------------------------
 //                             Setters
 //-------------------------------------------------------------------
-
+    inline void Set_speed(double v, unsigned int i);
 //-------------------------------------------------------------------
 //                          Public methods
 //-------------------------------------------------------------------
@@ -56,9 +56,8 @@ class agent
 //-------------------------------------------------------------------
 //                        Protected attributes
 //-------------------------------------------------------------------
-    static unsigned int nb_agents;
-
-    double speed;
+    unsigned int nb_agents;
+    double* speed;
     double xposition; //x-axis position
     double yposition; //y-axis position
     double r; //perception radius
@@ -86,7 +85,7 @@ class agent
 //===================================================================
 //                      Getters' definitions
 //===================================================================
-inline double agent::Get_speed(void)
+inline double* agent::Get_speed(void)
 {
   return speed;
 }
@@ -105,9 +104,18 @@ inline double agent::Get_r(void)
 {
   return r;
 }
+
+inline double agent::Get_speed(unsigned int x)
+{
+  return speed[x];
+}
 //===================================================================
 //                      Setters' definitions
 //===================================================================
+inline void agent::Set_speed(double v, unsigned int i)
+{
+  speed[i]=v;
+}
 
 //===================================================================
 //                      Operators' definitions
