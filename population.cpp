@@ -55,15 +55,35 @@ void population::create(void)
 {
 	unsigned int i;
 	tab=new agent [size];
-  tab[0]=agent(W,H);
+  tab[0]=agent(W,H, size);
 	for(i=1; i<size; i++)
 	{
-      tab[i]=agent(W,H);
+      tab[i]=agent(W,H, size);
       while(tab[i].Get_xposition()==tab[i-1].Get_xposition()) // agent not begin at the same place, this method up calculation size
       {
-        tab[i]=agent(W,H);
+        tab[i]=agent(W,H, size);
       }
 	}
+}
+
+//Speed calculation
+void population::alignment(void)
+{
+  unsigned int i;
+  unsigned int j;
+  double w=0;
+  for(i=0; i<size; i++)
+  {
+    for(j=0; j<size; j++)
+    {
+      w=tab[j].Get_speed(j+3)-tab[i].Get_speed(i+3)+w;
+    }
+    w=w/size;
+    tab[i].Set_speed(w,i);
+    printf("%f\n", tab[i].Get_speed(i));
+  }
+  
+
 }
 
 

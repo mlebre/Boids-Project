@@ -57,6 +57,9 @@ class population
     void define(void);
     void create(void);
 
+    //Speed calculation
+    void alignment(void); //calcul de v1
+
     //Print data
     void print(void);
 
