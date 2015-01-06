@@ -22,8 +22,7 @@ class population
 //-------------------------------------------------------------------
 //                          Public attributes
 //-------------------------------------------------------------------
-    double W;
-    double H;
+
 //We want to allow modifications of size's field by users
 
 //-------------------------------------------------------------------
@@ -40,16 +39,24 @@ class population
     inline unsigned int Get_size(void);
     inline unsigned int Get_nb_prey(void);
     inline unsigned int Get_nb_predator(void);
+    inline float Get_W(void);
+    inline float Get_H(void);
+    inline agent * Get_tab(void);
+
 //-------------------------------------------------------------------
 //                             Setters
 //-------------------------------------------------------------------
-    inline void Set_W(double width);
-    inline void Set_H(double height);
-    inline void Set_size(double width);
+    inline void Set_W(float width);
+    inline void Set_H(float height);
+    inline void Set_size(unsigned int nb);
 //-------------------------------------------------------------------
 //                          Public methods
 //-------------------------------------------------------------------
+    //Parameters definition & Population creation 
+    void define(void);
     void create(void);
+
+
 
   protected:
 //-------------------------------------------------------------------
@@ -71,6 +78,8 @@ class population
     unsigned int size;
     unsigned int nb_prey;
     unsigned int nb_predator;
+    float W;
+    float H;
     agent* tab;
 
 //-------------------------------------------------------------------
@@ -95,20 +104,35 @@ inline unsigned int population::Get_nb_predator(void)
 {
   return nb_predator;
 }
+
+inline float population::Get_W(void)
+{
+  return W;
+}
+
+inline float population::Get_H(void)
+{
+  return H;
+}
+
+inline agent * population::Get_tab(void)
+{
+  return tab;
+}
 //===================================================================
 //                      Setters' definitions
 //===================================================================
-inline void population::Set_W(double width)
+inline void population::Set_W(float width)
 {
   W=width;
 }
 
-inline void population::Set_H(double height)
+inline void population::Set_H(float height)
 {
   H=height;
 }
 
-inline void population::Set_size(double nb)
+inline void population::Set_size(unsigned int nb)
 {
   size=nb;
 }

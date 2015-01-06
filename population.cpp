@@ -38,6 +38,19 @@ population::~population(void)
 
 
 //Creation d'une population 
+
+void population::define(void)
+{
+  printf("What is the fiel size? (W*H format, press enter before grasp H)\n");
+  scanf("%f" ,&W);
+  scanf("%f", &H);
+  printf("Grasp the size of prey in population\n");
+  scanf("%d", &nb_prey);  
+  printf("Grasp the size of predator in population\n");
+  scanf("%d", &nb_predator);
+  size=nb_predator+nb_prey;
+}
+
 void population::create(void)
 {
 	unsigned int i;
