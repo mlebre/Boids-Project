@@ -59,9 +59,10 @@ class population
 
     //Speed calculation
     void alignment(void); //calcul de v1
+    void cohesion(void); //calcul de v2
 
     //Print data
-    void print(void);
+    void print(unsigned int t);
 
 
 

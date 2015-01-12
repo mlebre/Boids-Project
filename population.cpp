@@ -55,7 +55,7 @@ void population::create(void)
 {
 	unsigned int i;
 	tab=new agent [size];
-  tab[0]=agent(W,H, size);
+  tab[0]=agent(W,H, size); 
 	for(i=1; i<size; i++)
 	{
       tab[i]=agent(W,H, size);
@@ -63,7 +63,7 @@ void population::create(void)
       {
         tab[i]=agent(W,H, size);
       }
-	}
+  }
 }
 
 //Speed calculation
@@ -82,47 +82,66 @@ void population::alignment(void)
     tab[i].Set_speed(w,i);
     printf("%f\n", tab[i].Get_speed(i));
   }
-  
-
 }
+
+/*void population::cohesion(void)
+{
+  unsigned int i;
+  unsigned int j;
+  double w=0;
+  for(i=0; i<size; i++)
+  {
+    for(j=0; j<size; j++)
+    {
+      w=tab[j].Get_xposition()-tab[i].Get_xposition()+w;
+    }
+    w=w/size;
+    tab[i].Set_speed(w,i+1);
+    printf("%f\n", tab[i].Get_speed(i));
+  }
+}*/
 
 
 //Print data
-void population::print(void)
+void population::print(unsigned int t)
 {
-  unsigned int i;
+  unsigned int i, j;
   bwindow win(W,H); // carré blanc de taille W*H
   printf("%d\n",win.init());
   win.map();
-  for(;;)
+  for(j=0;j<t;j++)
   {
-    int ev = win.parse_event();
-    switch(ev)
+    bool condition=false;
+    printf("%d\n", j);
+    win.draw_square(0,0,W,H,0xFFFFFF); //remet un carré blanc
+    while (!condition)
     {
-        case BKPRESS :
-      printf("keypressed\n"); 
-      printf("key : %s\n",win.get_lastkey());
-        break;
-        case BBPRESS:
-      printf("buttonpressed\n"); break;
-        case BEXPOSE:
-      printf("expose\n"); break;
-        case BCONFIGURE:
-      printf("configure\n"); break;
+      int ev = win.parse_event();
+      switch(ev)
+      {
+          case BKPRESS :
+        printf("keypressed\n"); 
+        printf("key : %s\n",win.get_lastkey());
+          break;
+          case BBPRESS:
+          condition = true;
+          break; 
+          case BEXPOSE:
+        printf("expose\n"); break;
+          case BCONFIGURE:
+        printf("configure\n"); break;
+      }
     }
-    win.draw_text(10,10,0x0,"Population au temps 0",strlen("Population au temps 0"));
     for(i=0; i<size; i++)
+
     {
-      win.draw_square(-2+(tab[i].Get_xposition()),-2+(tab[i].Get_xposition()), 2+(tab[i].Get_xposition()), 2+(tab[i].Get_xposition()),0xFF0000);
+      win.draw_square(-2+(tab[i].Get_xposition()),-2+(tab[i].Get_yposition()), 2+(tab[i].Get_xposition()), 2+(tab[i].Get_yposition()),0xFF0000);
+     // win.draw_line(tab[i].Get_xposition(),tab[i].Get_yposition(),tab[i].Get_xspeed(),tab[i].Get_yspeed(),0xFF0000);
     }
-    
-    
-    //win.draw_fsquare(400,400,440,440,0xFF00);
-  }
-  /*for(i=0; i<size; i++)
-  {
-    printf("position: %f; %f\n", tab[i].Get_xposition(), tab[i].Get_yposition());
-  }*/
+    char name[]="Population";
+    win.draw_text(10,10,0x0, name,strlen(name));
+
+ }
 }
 
 
