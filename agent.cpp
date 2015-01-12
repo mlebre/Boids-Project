@@ -20,7 +20,7 @@ agent::agent(void)
   speed=NULL;
   xposition=0;
   yposition=0;
-  r=0.5;
+  r=0;
   nb_agents=0;
 }
 
@@ -35,7 +35,7 @@ agent::agent(double W, double H, unsigned int size)
   }
   xposition=W*(random()/(RAND_MAX + 1.0));
   yposition=H*(random()/(RAND_MAX + 1.0));
-  r=0.5;
+  r=10;
   nb_agents=size;
 }
 //-------------------------------------------------------------------
@@ -43,8 +43,7 @@ agent::agent(double W, double H, unsigned int size)
 //-------------------------------------------------------------------
 agent::~agent(void)
 {
-  delete [] speed;
-  nb_agents--;
+
 }
 
 //-------------------------------------------------------------------
