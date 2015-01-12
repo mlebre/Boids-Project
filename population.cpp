@@ -22,6 +22,7 @@ population::population(void)
   nb_predator=0;
   H=0;
   W=0;
+  tab=NULL;
 }
 
 //-------------------------------------------------------------------
@@ -71,12 +72,17 @@ void population::alignment(void)
 {
   unsigned int i;
   unsigned int j;
-  double w=0;
+  double w=0, norm;
+  
   for(i=0; i<size; i++)
   {
     for(j=0; j<size; j++)
     {
-      w=tab[j].Get_speed(j+3)-tab[i].Get_speed(i+3)+w;
+      norm=sqrt((tab[i].Get_xposition()-tab[j].Get_xposition())*(tab[i].Get_xposition()-tab[j].Get_xposition())+(tab[i].Get_yposition()-tab[j].Get_yposition())*(tab[i].Get_yposition()-tab[j].Get_yposition()));
+      if(norm<tab[i].Get_r())
+      {
+        w=tab[j].Get_speed(j+3)-tab[i].Get_speed(i+3)+w;
+      }
     }
     w=w/size;
     tab[i].Set_speed(w,i);
@@ -84,21 +90,35 @@ void population::alignment(void)
   }
 }
 
-/*void population::cohesion(void)
+void population::cohesion(void)
 {
   unsigned int i;
   unsigned int j;
-  double w=0;
+  double w=0, norm;
   for(i=0; i<size; i++)
   {
+
     for(j=0; j<size; j++)
     {
-      w=tab[j].Get_xposition()-tab[i].Get_xposition()+w;
+       norm=sqrt((tab[i].Get_xposition()-tab[j].Get_xposition())*(tab[i].Get_xposition()-tab[j].Get_xposition())+(tab[i].Get_yposition()-tab[j].Get_yposition())*(tab[i].Get_yposition()-tab[j].Get_yposition()));
+
+      if(norm<tab[i].Get_r())
+      {
+        w=tab[j].Get_xposition()-tab[i].Get_xposition()+w;
+      }
     }
     w=w/size;
     tab[i].Set_speed(w,i+1);
-    printf("%f\n", tab[i].Get_speed(i));
+    printf("%f\n", tab[i].Get_speed(i+1));
   }
+}
+
+/*void split(void)
+{
+  unsigned int i;
+  unsigned int j;
+  double w=0, norm;
+
 }*/
 
 

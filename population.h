@@ -11,6 +11,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
+#include <math.h>
 
 #include "agent.h"
 #include "bwindow.h"
@@ -60,6 +61,7 @@ class population
     //Speed calculation
     void alignment(void); //calcul de v1
     void cohesion(void); //calcul de v2
+    //void split(void);
 
     //Print data
     void print(unsigned int t);
