@@ -29,16 +29,16 @@ int main()
   Boids.create();*/
 
   //Only to tests
-  Boids.Set_W(200);
-  Boids.Set_H(200);
+  Boids.Set_W(600);
+  Boids.Set_H(600);
   Boids.Set_size(2);
   printf("Size= %d, field=%.2f*%.2f\n", Boids.Get_size(), Boids.Get_W(), Boids.Get_H());
 //-------------------------------------------------------------------  
 //Print data
   Boids.create();
   Boids.alignment(); 
-  Boids.print();
-  
+
+Boids.print(1000000);
 
   return 0;
 } 
