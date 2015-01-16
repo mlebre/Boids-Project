@@ -22,7 +22,8 @@ population::population(void)
   nb_predator=0;
   H=0;
   W=0;
-  tab=NULL;
+  tab_prey=NULL;
+  tab_predator=NULL;
 }
 
 //-------------------------------------------------------------------
@@ -30,7 +31,8 @@ population::population(void)
 //-------------------------------------------------------------------
 population::~population(void)
 {
-  delete [] tab;
+  delete [] tab_prey;
+  delete [] tab_predator;
 }
 
 //-------------------------------------------------------------------
@@ -52,19 +54,21 @@ void population::define(void)
   size=nb_predator+nb_prey;
 }
 
-void population::create(void)
+void population::create(void)  
 {
 	unsigned int i;
-	tab=new agent [size];
-  tab[0]=agent(W,H, size); 
-	for(i=1; i<size; i++)
+	tab_prey=new prey [nb_prey];
+  tab_prey[0]=prey(W,H, nb_prey); 
+	for(i=1; i<nb_prey; i++)
 	{
-      tab[i]=agent(W,H, size);
-      while(tab[i].Get_xposition()==tab[i-1].Get_xposition()) // agent not begin at the same place, this method up calculation size
+      tab_prey[i]=prey(W,H, nb_prey);
+      //avoid that 2 preys have the same place
+      while(tab_prey[i].Get_xposition()==tab_prey[i-1].Get_xposition()|| tab_prey[i].Get_yposition()==tab_prey[i-1].Get_yposition())  // agent not begin at the same place, this method up calculation size
       {
-        tab[i]=agent(W,H, size);
+        tab_prey[i]=prey(W,H, nb_prey);
       }
   }
+  // refaire même boucle pour tab_predator
 }
 
 //Speed calculation
@@ -72,21 +76,25 @@ void population::alignment(void)
 {
   unsigned int i;
   unsigned int j;
-  double w=0, norm;
-  
-  for(i=0; i<size; i++)
+  double wx=0, wy=0, norm;
+  printf("V1\n");
+  for(i=0; i<nb_prey; i++)
   {
-    for(j=0; j<size; j++)
+    for(j=0; j<nb_prey; j++)
     {
-      norm=sqrt((tab[i].Get_xposition()-tab[j].Get_xposition())*(tab[i].Get_xposition()-tab[j].Get_xposition())+(tab[i].Get_yposition()-tab[j].Get_yposition())*(tab[i].Get_yposition()-tab[j].Get_yposition()));
-      if(norm<tab[i].Get_r())
+      //Norme calculation of v1
+      norm=sqrt((tab_prey[i].Get_xposition()-tab_prey[j].Get_xposition())*(tab_prey[i].Get_xposition()-tab_prey[j].Get_xposition())+(tab_prey[i].Get_yposition()-tab_prey[j].Get_yposition())*(tab_prey[i].Get_yposition()-tab_prey[j].Get_yposition()));
+      if(norm<tab_prey[i].Get_r())
       {
-        w=tab[j].Get_speed(j+3)-tab[i].Get_speed(i+3)+w;
+        wx=tab_prey[j].Get_speed(6)-tab_prey[i].Get_speed(6)+wx;
+        wy=tab_prey[j].Get_speed(7)-tab_prey[i].Get_speed(7)+wy;
       }
     }
-    w=w/size;
-    tab[i].Set_speed(w,i);
-    printf("%f\n", tab[i].Get_speed(i));
+    wx=wx/nb_prey;
+    wy=wy/nb_prey;
+    tab_prey[i].Set_speed(wx,0);
+    tab_prey[i].Set_speed(wy,1);
+    //printf("%f\n", tab_prey[i].Get_speed(0));
   }
 }
 
@@ -94,32 +102,53 @@ void population::cohesion(void)
 {
   unsigned int i;
   unsigned int j;
-  double w=0, norm;
-  for(i=0; i<size; i++)
+  double wx=0, wy=0, norm;
+  printf("\nV2\n");
+  for(i=0; i<nb_prey; i++)
   {
-
-    for(j=0; j<size; j++)
+    for(j=0; j<nb_prey; j++)
     {
-       norm=sqrt((tab[i].Get_xposition()-tab[j].Get_xposition())*(tab[i].Get_xposition()-tab[j].Get_xposition())+(tab[i].Get_yposition()-tab[j].Get_yposition())*(tab[i].Get_yposition()-tab[j].Get_yposition()));
-
-      if(norm<tab[i].Get_r())
+      //Norme calculation of v2
+       norm=sqrt((tab_prey[i].Get_xposition()-tab_prey[j].Get_xposition())*(tab_prey[i].Get_xposition()-tab_prey[j].Get_xposition())+(tab_prey[i].Get_yposition()-tab_prey[j].Get_yposition())*(tab_prey[i].Get_yposition()-tab_prey[j].Get_yposition()));
+      if(norm<tab_prey[i].Get_r())
       {
-        w=tab[j].Get_xposition()-tab[i].Get_xposition()+w;
+        wx=tab_prey[j].Get_xposition()-tab_prey[i].Get_xposition()+wx;
+        wy=tab_prey[j].Get_yposition()-tab_prey[i].Get_yposition()+wy;
       }
     }
-    w=w/size;
-    tab[i].Set_speed(w,i+1);
-    printf("%f\n", tab[i].Get_speed(i+1));
+    wx=wx/nb_prey;
+    wy=wy/nb_prey;
+    tab_prey[i].Set_speed(wx,2);
+    tab_prey[i].Set_speed(wy,3);
+    //printf("%f\n", tab_prey[i].Get_speed(2));
   }
 }
 
-/*void split(void)
+void population::split(void)
 {
   unsigned int i;
-  unsigned int j;
-  double w=0, norm;
+  unsigned int k;
+  double wx=0, wy=0, norm;
+  printf("\nV3\n");
+  for(i=0; i<nb_prey; i++)
+  {
+    for(k=0; k<nb_prey; k++)
+    {
+      norm=sqrt((tab_prey[i].Get_xposition()-tab_prey[k].Get_xposition())*(tab_prey[i].Get_xposition()-tab_prey[k].Get_xposition())+(tab_prey[i].Get_yposition()-tab_prey[k].Get_yposition())*(tab_prey[i].Get_yposition()-tab_prey[k].Get_yposition()));
+      if(norm<tab_prey[i].Get_r())
+      {
+        wx=tab_prey[k].Get_xposition()-tab_prey[i].Get_xposition()+wx;
+        wy=tab_prey[k].Get_yposition()-tab_prey[i].Get_yposition()+wy;
+      }
+    }
+      wx=-(wx/nb_prey);
+      wy=-(wy/nb_prey);
+      tab_prey[i].Set_speed(wx,4);
+      tab_prey[i].Set_speed(wx,5);
+      //printf("%f \n", tab_prey[i].Get_speed(4));
+  }
 
-}*/
+}
 
 
 //Print data
@@ -132,7 +161,6 @@ void population::print(unsigned int t)
   for(j=0;j<t;j++)
   {
     bool condition=false;
-    printf("%d\n", j);
     win.draw_square(0,0,W,H,0xFFFFFF); //remet un carré blanc
     while (!condition)
     {
@@ -155,8 +183,8 @@ void population::print(unsigned int t)
     for(i=0; i<size; i++)
 
     {
-      win.draw_square(-2+(tab[i].Get_xposition()),-2+(tab[i].Get_yposition()), 2+(tab[i].Get_xposition()), 2+(tab[i].Get_yposition()),0xFF0000);
-     // win.draw_line(tab[i].Get_xposition(),tab[i].Get_yposition(),tab[i].Get_xspeed(),tab[i].Get_yspeed(),0xFF0000);
+      win.draw_square(-2+(tab_prey[i].Get_xposition()),-2+(tab_prey[i].Get_yposition()), 2+(tab_prey[i].Get_xposition()), 2+(tab_prey[i].Get_yposition()),0xFF0000);
+     // win.draw_line(tab_prey[i].Get_xposition(),tab_prey[i].Get_yposition(),tab_prey[i].Get_xspeed(),tab_prey[i].Get_yspeed(),0xFF0000);
     }
     char name[]="Population";
     win.draw_text(10,10,0x0, name,strlen(name));

@@ -15,6 +15,8 @@
 
 #include "agent.h"
 #include "bwindow.h"
+#include "prey.h"
+#include "predator.h"
 //===================================================================
 //                          Class declaration
 //===================================================================
@@ -43,25 +45,25 @@ class population
     inline unsigned int Get_nb_predator(void);
     inline float Get_W(void);
     inline float Get_H(void);
-    inline agent * Get_tab(void);
+    inline agent * Get_tab_prey(void);
 
 //-------------------------------------------------------------------
 //                             Setters
 //-------------------------------------------------------------------
     inline void Set_W(float width);
     inline void Set_H(float height);
-    inline void Set_size(unsigned int nb);
+    inline void Set_nb_prey(unsigned int nb);
 //-------------------------------------------------------------------
 //                          Public methods
 //-------------------------------------------------------------------
     //Parameters definition & Population creation 
-    void define(void);
-    void create(void);
+    void define(void);  //Définition population's parameters by user
+    void create(void);  //Creation of prey and predator arrays which give them a position.
 
-    //Speed calculation
+    //Speed prey calculation
     void alignment(void); //calcul de v1
     void cohesion(void); //calcul de v2
-    //void split(void);
+    void split(void);  //calcul de v3
 
     //Print data
     void print(unsigned int t);
@@ -91,7 +93,8 @@ class population
     unsigned int nb_predator;
     float W;
     float H;
-    agent* tab;
+    prey* tab_prey;
+    predator* tab_predator;
 
 //-------------------------------------------------------------------
 //                         Private methods
@@ -126,9 +129,9 @@ inline float population::Get_H(void)
   return H;
 }
 
-inline agent * population::Get_tab(void)
+inline agent * population::Get_tab_prey(void)
 {
-  return tab;
+  return tab_prey;
 }
 //===================================================================
 //                      Setters' definitions
@@ -143,9 +146,10 @@ inline void population::Set_H(float height)
   H=height;
 }
 
-inline void population::Set_size(unsigned int nb)
+inline void population::Set_nb_prey(unsigned int nb)
 {
-  size=nb;
+  nb_prey=nb;
+  size=size+nb_prey;
 }
 
 //===================================================================
