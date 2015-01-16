@@ -35,7 +35,7 @@ class agent
 //-------------------------------------------------------------------
 //                             Getters
 //-------------------------------------------------------------------
-    inline double* Get_speed(void);
+    inline double* Get_speed(void); //inutilisé pour l'instant
     inline double Get_xposition(void);
     inline double Get_yposition(void);
     inline double Get_r(void);
@@ -57,7 +57,8 @@ class agent
 //                        Protected attributes
 //-------------------------------------------------------------------
     unsigned int nb_agents;
-    double* speed;
+    double* speed; //speed at time t
+    double* new_speed; //speed at time t+dt
     double xposition; //x-axis position
     double yposition; //y-axis position
     double r; //perception radius
@@ -85,7 +86,7 @@ class agent
 //===================================================================
 //                      Getters' definitions
 //===================================================================
-inline double* agent::Get_speed(void)
+inline double* agent::Get_speed(void) //inutilisé pour l'instant
 {
   return speed;
 }

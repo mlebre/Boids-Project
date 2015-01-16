@@ -28,10 +28,15 @@ agent::agent(double W, double H, unsigned int size)
 {
   srandom(time(NULL));
   unsigned int i;
-  speed=new double [4*size];
+  speed=new double [8*size];
   for(i=0; i<4*size; i++)
   {
     speed[i]=0;
+  }
+  new_speed= new double [2*size];
+  for(i=0; i<4*size; i++)
+  {
+    new_speed[i]=0;
   }
   xposition=W*(random()/(RAND_MAX + 1.0));
   yposition=H*(random()/(RAND_MAX + 1.0));
