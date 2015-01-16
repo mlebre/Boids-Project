@@ -31,16 +31,21 @@ int main()
   //Only to tests
   Boids.Set_W(50);
   Boids.Set_H(50);
-  Boids.Set_size(5);
-  printf("Size= %d, field=%.2f*%.2f\n", Boids.Get_size(), Boids.Get_W(), Boids.Get_H());
+  Boids.Set_nb_prey(5);
   Boids.create();
+  printf("Size= %d, field=%.2f*%.2f\n", Boids.Get_size(), Boids.Get_W(), Boids.Get_H());
+  
 //-------------------------------------------------------------------
 //Speed calculation  
   Boids.alignment();
   Boids.cohesion();
-  //Boids.split();
+  Boids.split();
+
+
+  //prey bird=prey();
+
 //Print data
-//Boids.print(1000000);
+  Boids.print(1000000);
 
   return 0;
 } 
