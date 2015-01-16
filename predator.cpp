@@ -20,6 +20,10 @@ predator::predator(void)
 
 }
 
+predator::predator(double W, double H, unsigned int size)
+{
+	
+}
 //-------------------------------------------------------------------
 //                           Destructors
 //-------------------------------------------------------------------

@@ -11,14 +11,37 @@
 //-------------------------------------------------------------------
 //                    Definiton of static attributes
 //-------------------------------------------------------------------
-unsigned int prey::compt=0;
 
 //-------------------------------------------------------------------
 //                           Constructors
 //-------------------------------------------------------------------
 prey::prey(void)
 {
-  compt=compt+1;
+  speed=NULL;
+  xposition=0;
+  yposition=0;
+  r=0;
+  nb_agents=0;;
+}
+
+prey::prey(double W, double H, unsigned int size)
+{
+  srandom(time(NULL));
+  unsigned int i;
+  speed=new double [8];
+  for(i=0; i<8; i++)
+  {
+    speed[i]=0;
+  }
+  new_speed= new double [2];
+  for(i=0; i<2; i++)
+  {
+    new_speed[i]=0;
+  }
+  xposition=W*(random()/(RAND_MAX + 1.0));
+  yposition=H*(random()/(RAND_MAX + 1.0));
+  r=10;
+  nb_agents=size;
 }
 
 //-------------------------------------------------------------------
@@ -26,8 +49,10 @@ prey::prey(void)
 //-------------------------------------------------------------------
 prey::~prey(void)
 {
-  compt--;
+  
 }
+
+
 
 //-------------------------------------------------------------------
 //                         Public methods
@@ -45,7 +70,3 @@ prey::~prey(void)
 //                        Non inline accesors
 //-------------------------------------------------------------------
 
-unsigned int prey::Get_compt(void)
-{
-  return compt;
-}
